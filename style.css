@@ -126,7 +126,6 @@ body {
   filter: grayscale(70%);
 }
 
-/* --- Winning Card Highlight --- */
 .win {
   box-shadow: 0 0 0.8rem 0.5rem rgba(0, 255, 0, 0.9) !important;
 }
@@ -147,7 +146,6 @@ body {
   box-sizing: border-box;
 }
 
-/* --- Computer Title Gradient --- */
 .computer-title {
   border-image: linear-gradient(
       to right,
@@ -166,7 +164,6 @@ body {
   );
 }
 
-/* --- Player Title Gradient --- */
 .player-title {
   border-image: linear-gradient(
       to right,
@@ -222,7 +219,6 @@ body {
   justify-content: center;
 }
 
-/* --- Mode and Round Section Headers --- */
 .mode-section h3,
 .round-section h3 {
   margin: 0.5rem;
@@ -467,7 +463,7 @@ body {
   }
 }
 
-/* --- Game Over Popup Overlay --- */
+/* --- Game Over Popup --- */
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -481,7 +477,6 @@ body {
   z-index: 2000;
 }
 
-/* --- Game Over Popup Content --- */
 .popup-content {
   background: white;
   padding: 2rem 3rem;
@@ -510,12 +505,10 @@ body {
 
 /* Desktop & large laptops (width ≤ 1025px) */
 @media only screen and (max-width: 1025px) {
-  /* Main game wrapper layout */
   .game-wrapper {
     padding: 3rem 2rem;
   }
 
-  /* Player and computer labels */
   .player-title,
   .computer-title {
     font-size: 1rem;
@@ -525,19 +518,16 @@ body {
     transform: scale(1.3);
   }
 
-  /* Instructions styling */
   .instruction-box {
     font-size: 1.1rem;
     padding: 0.3rem 0rem;
   }
 
-  /* General buttons */
   .btn {
     font-size: 1rem;
     padding: 0.6rem 1rem;
   }
 
-  /* Play button */
   .play-btn {
     font-size: 2.5rem;
     padding: 15px 20px;
@@ -546,7 +536,6 @@ body {
 
 /* Tablet / horizontal mobile (width ≤ 900px) */
 @media only screen and (max-width: 900px) {
-  /* Move padding from wrapper to game area for better fit */
   .game-wrapper {
     padding: 0;
   }
@@ -554,32 +543,27 @@ body {
     padding: 1rem;
   }
 
-  /* Reduce card size */
   .player-cards .card {
     width: 6rem;
     height: 6rem;
   }
 
-  /* Player and computer labels */
   .player-title,
   .computer-title {
     font-size: 0.7rem;
   }
 
-  /* Compact instruction text */
   .instruction-box {
     font-size: 0.8rem;
     padding: 0.2rem 0rem;
   }
 
-  /* Sidebar layout adjustments */
   .sidebar {
     padding: 0.8rem 0.5rem;
     border-radius: 0;
     justify-content: space-around;
   }
 
-  /* Reduce all sidebar text sizes */
   .sidebar,
   .sidebar h3,
   .sidebar p,
@@ -588,24 +572,20 @@ body {
     font-size: 0.8rem;
   }
 
-  /* Sidebar section titles */
   .sidebar h3 {
     font-size: 0.85rem;
     margin: 0.3rem 0;
   }
 
-  /* Buttons inside sidebar */
   .sidebar .mode-btn,
   .sidebar .btn {
     font-size: 0.8rem;
   }
 
-  /* Scoreboard text */
   .sidebar .result {
     font-size: 0.75rem;
   }
 
-  /* Rules list styling */
   .sidebar ul {
     padding-left: 1rem;
   }
@@ -613,12 +593,10 @@ body {
     font-size: 0.75rem;
   }
 
-  /* Rules popup title */
   .rules-popup h3 {
     font-size: 0.9rem;
   }
 
-  /* Rules popup list items */
   .rules-popup ul li {
     font-size: 0.8rem;
   }
@@ -626,23 +604,19 @@ body {
 
 /* Medium mobile devices (width ≤ 800px) */
 @media only screen and (max-width: 800px) {
-  /* Game area takes more space */
   .game-area {
     flex: 4;
   }
 
-  /* Slightly smaller cards */
   .player-cards .card {
     width: 5.5rem;
     height: 5.5rem;
   }
 
-  /* Instruction box text size */
   .instruction-box {
     font-size: 0.8rem;
   }
 
-  /* Sidebar takes less space */
   .sidebar {
     flex: 2;
   }
@@ -650,13 +624,11 @@ body {
 
 /* Small mobile devices (width ≤ 700px) */
 @media only screen and (max-width: 700px) {
-  /* Smaller cards */
   .player-cards .card {
     width: 5rem;
     height: 5rem;
   }
 
-  /* Keep instruction text readable but compact */
   .instruction-box {
     font-size: 0.8rem;
   }
@@ -664,7 +636,6 @@ body {
 
 /* Very small mobile devices (width ≤ 600px) */
 @media only screen and (max-width: 600px) {
-  /* Reduce padding on sidebar buttons */
   .sidebar .mode-btn,
   .sidebar .btn {
     padding: 0.5rem 0.8rem;
