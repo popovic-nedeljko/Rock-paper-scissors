@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta and Title -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+    />
+    <title>Rock Paper Scissors</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- JavaScript Module -->
+    <script type="module" defer src="./js/controller.js"></script>
+  </head>
+  <body>
+    <!-- Opening Screen -->
+    <div id="openingScreen" class="opening-screen">
+      <div class="overlay"></div>
+
+      <button id="playButton" class="play-btn">
+        <span> PLAY </span>
+      </button>
+    </div>
+
+    <!-- Main Game Interface -->
+    <div id="gameInterface" class="game-wrapper hidden">
+      <!-- Main Game Area (3/4 width) -->
+      <div class="game-area">
+        <!-- Computer Cards -->
+        <div class="player-cards computer">
+          <div class="card" data-choice="rock">
+            <img src="./pictures/rock.png" alt="Rock" />
+          </div>
+          <div class="card" data-choice="scissors">
+            <img src="./pictures/scissors.png" alt="Scissors" />
+          </div>
+          <div class="card" data-choice="paper">
+            <img src="./pictures/paper.png" alt="Paper" />
+          </div>
+        </div>
+        <!-- Computer Title -->
+        <h2 class="computer-title">Computer</h2>
+
+        <!-- Instruction Box -->
+        <div class="instruction-box" id="instructionBox">
+          Choose Rock, Paper or Scissors
+        </div>
+
+        <!-- Player Title -->
+        <h2 class="player-title">Player</h2>
+
+        <!-- Player Cards -->
+        <div class="player-cards player">
+          <div class="card choice" data-choice="rock">
+            <img src="./pictures/rock.png" alt="Rock" />
+          </div>
+          <div class="card choice" data-choice="scissors">
+            <img src="./pictures/scissors.png" alt="Scissors" />
+          </div>
+          <div class="card choice" data-choice="paper">
+            <img src="./pictures/paper.png" alt="Paper" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar (1/4 width) -->
+      <div class="sidebar">
+        <!-- Mode Selection -->
+        <div class="mode-section">
+          <h3>Choose difficulty Mode:</h3>
+          <div class="mode-select">
+            <button id="standardMode" class="mode-btn active">Standard</button>
+            <button id="hardMode" class="mode-btn">Hard</button>
+          </div>
+        </div>
+
+        <!-- Round Selection -->
+        <div class="round-section">
+          <h3>Choose rounds(win):</h3>
+          <div class="round-select">
+            <button id="3win" class="mode-btn active">3</button>
+            <button id="5win" class="mode-btn">5</button>
+            <button id="10win" class="mode-btn">10</button>
+          </div>
+        </div>
+
+        <!-- Scoreboard -->
+        <div class="result">
+          <p>YOU: <span id="userChoice">-</span></p>
+          <p>COMPUTER: <span id="computerChoice">-</span></p>
+          <p>
+            WIN: <span id="wins">0</span> &nbsp; LOSE:
+            <span id="losses">0</span>
+          </p>
+        </div>
+
+        <!-- New Game Button -->
+        <button id="newGame" class="btn new-game-btn">New Game</button>
+
+        <!-- Rules Button -->
+        <button class="btn rules-btn">RULES</button>
+
+        <!-- Rules Popup -->
+        <div class="rules-overlay hidden" id="rulesOverlay">
+          <div class="rules-popup" id="rulesPopup">
+            <button class="btn close-rules-btn">x</button>
+            <h3>Rules</h3>
+            <ul>
+              <li>Rock beats Scissors</li>
+              <li>Scissors beats Paper</li>
+              <li>Paper beats Rock</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Popup -->
+    <div class="popup-overlay hidden">
+      <div class="popup-content">
+        <p class="game-over-message">Player wins the game!</p>
+        <button id="newGamePopup" class="btn new-game-btn">New Game</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,672 @@
+/* --- Global Reset and Box Sizing --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+  width: 100dvw;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* --- Body Background --- */
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url("./pictures/bg.png");
+  background-size: cover;
+}
+
+/* --- Main Game Wrapper --- */
+.game-wrapper {
+  height: 100dvh;
+  width: 100dvw;
+  max-width: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+}
+
+/* --- Opening Screen --- */
+.opening-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("./pictures/bg.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+/* --- Utility Classes --- */
+.hidden {
+  display: none !important;
+}
+
+/* --- Game Area --- */
+.game-area {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Player Cards Container --- */
+.player-cards {
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 0.5rem 0;
+}
+
+/* --- Individual Card Styling --- */
+.player-cards .card {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.player-cards img {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Player & Computer Card Shadow Effects --- */
+.player-cards.player .card {
+  border: none;
+  box-shadow: 0 0 0.8rem 0.5rem rgba(0, 191, 255, 0.8);
+}
+
+.player-cards.computer .card {
+  border: none;
+  box-shadow: 0 0 0.8rem 0.5rem rgba(255, 0, 0, 0.477);
+}
+
+/* --- Disabled State for Cards --- */
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* --- Card Animation & Interaction --- */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease,
+    opacity 0.3s ease, filter 0.3s ease;
+}
+
+.player .card:hover {
+  transform: scale(1.1);
+}
+
+/* --- Selected and Not Selected Cards --- */
+.card.selected {
+  transform: scale(1.3);
+  filter: none;
+  opacity: 1;
+  z-index: 2;
+}
+
+.card.not-selected {
+  transform: scale(0.9);
+  opacity: 0.8;
+  filter: grayscale(70%);
+}
+
+/* --- Winning Card Highlight --- */
+.win {
+  box-shadow: 0 0 0.8rem 0.5rem rgba(0, 255, 0, 0.9) !important;
+}
+
+/* --- Player and Computer Titles --- */
+.player-title,
+.computer-title {
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+  padding: 0.2rem 0;
+  color: white;
+  text-align: center;
+  border-top: 3px solid;
+  border-bottom: 3px solid;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  box-sizing: border-box;
+}
+
+/* --- Computer Title Gradient --- */
+.computer-title {
+  border-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 0, 0, 0.8) 30%,
+      rgba(255, 0, 0, 0.8) 70%,
+      transparent
+    )
+    1;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(252, 95, 95, 0.8) 30%,
+    rgba(250, 80, 80, 0.8) 70%,
+    transparent
+  );
+}
+
+/* --- Player Title Gradient --- */
+.player-title {
+  border-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 128, 255, 0.8) 30%,
+      rgba(0, 128, 255, 0.8) 70%,
+      transparent
+    )
+    1;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 89, 255, 0.8) 30%,
+    rgba(0, 94, 255, 0.8) 70%,
+    transparent
+  );
+}
+
+/* --- Instruction Box Styling --- */
+.instruction-box {
+  background-color: rgba(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 0.3rem 0rem;
+  border: 4px solid lightblue;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 80%;
+  text-align: center;
+}
+
+/* --- Sidebar Container --- */
+.sidebar {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem 1rem;
+  border-radius: 0.8rem;
+  color: #222;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.297);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+/* --- Mode and Round Selectors --- */
+.mode-select,
+.round-select {
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Mode and Round Section Headers --- */
+.mode-section h3,
+.round-section h3 {
+  margin: 0.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* --- Mode Buttons Styling --- */
+.mode-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  margin: 0.2rem;
+}
+
+.mode-btn.active {
+  border-color: #4cafef;
+  background: #e6f5ff;
+}
+
+.mode-btn:hover {
+  border-color: #4cafef;
+  background: #f2faff;
+}
+
+/* --- Result Section --- */
+.result {
+  font-size: 1rem;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+/* --- Buttons Styling --- */
+.btn {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.new-game-btn {
+  background: #ff4c4c;
+}
+
+.new-game-btn:hover {
+  background: #4cafef;
+}
+
+.rules-btn {
+  background: #ffaf53;
+}
+
+/* --- Close Rules Button --- */
+.close-rules-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: #000;
+  padding: 0.2rem 0.4rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.close-rules-btn:hover {
+  background: #ff4c4c;
+  color: #fff;
+}
+
+/* --- Rules Popup Overlay --- */
+.rules-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.rules-overlay.hidden {
+  display: none;
+}
+
+/* --- Rules Popup Box --- */
+.rules-popup {
+  position: relative;
+  background-color: white;
+  padding: 1rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: none;
+}
+
+.rules-popup.show {
+  bottom: 1rem;
+  position: absolute;
+  display: block;
+}
+
+/* --- Play Button Styling --- */
+.play-btn {
+  --btn-padding: 15px 20px;
+  --btn-transition: 0.4s;
+  --btn-letter-spacing: 0.1rem;
+  --btn-animation-duration: 1.2s;
+  --hover-btn-color: lime;
+  --default-btn-color: #fff;
+  --font-size: 3rem;
+  --font-weight: 600;
+  --font-family: Menlo, Roboto Mono, monospace;
+
+  user-select: none;
+  box-sizing: border-box;
+  padding: var(--btn-padding);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--default-btn-color);
+  font: var(--font-weight) var(--font-size) var(--font-family);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--btn-transition);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.play-btn span {
+  letter-spacing: var(--btn-letter-spacing);
+  transition: var(--btn-transition);
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.play-btn span::before {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  color: var(--hover-btn-color);
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.play-btn:hover span,
+.play-btn:focus span {
+  color: transparent;
+}
+
+.play-btn:hover span::before,
+.play-btn:focus span::before {
+  animation: chitchat linear both var(--btn-animation-duration);
+}
+
+@keyframes chitchat {
+  0% {
+    content: "#";
+  }
+  5% {
+    content: ".";
+  }
+  10% {
+    content: "^{";
+  }
+  15% {
+    content: "-!";
+  }
+  20% {
+    content: "#$_";
+  }
+  25% {
+    content: "№:0";
+  }
+  30% {
+    content: "#{+.";}35%{content: "@}-?";
+  }
+  40% {
+    content: "?{4@%";
+  }
+  45% {
+    content: "=.,^!";
+  }
+  50% {
+    content: "?2@%";
+  }
+  55% {
+    content: "\\;1}]";
+  }
+  60% {
+    content: "?{%:%";
+    right: 0;
+  }
+  65% {
+    content: "|{f[4";
+    right: 0;
+  }
+  70% {
+    content: "{4%0%";
+    right: 0;
+  }
+  75% {
+    content: "'1_0<";
+    right: 0;
+  }
+  80% {
+    content: "{0%";
+    right: 0;
+  }
+  85% {
+    content: "]>'";
+    right: 0;
+  }
+  90% {
+    content: "4";
+    right: 0;
+  }
+  95% {
+    content: "2";
+    right: 0;
+  }
+  100% {
+    content: "PLAY";
+    color: var(--hover-btn-color);
+    background-color: transparent;
+  }
+}
+
+/* --- Game Over Popup Overlay --- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* --- Game Over Popup Content --- */
+.popup-content {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.popup-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* --- Responsive Media Queries --- */
+
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .card:focus,
+  .choice:focus {
+    outline: none;
+  }
+}
+
+/* Desktop & large laptops (width ≤ 1025px) */
+@media only screen and (max-width: 1025px) {
+  /* Main game wrapper layout */
+  .game-wrapper {
+    padding: 3rem 2rem;
+  }
+
+  /* Player and computer labels */
+  .player-title,
+  .computer-title {
+    font-size: 1rem;
+  }
+
+  .player .card:hover {
+    transform: scale(1.3);
+  }
+
+  /* Instructions styling */
+  .instruction-box {
+    font-size: 1.1rem;
+    padding: 0.3rem 0rem;
+  }
+
+  /* General buttons */
+  .btn {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+
+  /* Play button */
+  .play-btn {
+    font-size: 2.5rem;
+    padding: 15px 20px;
+  }
+}
+
+/* Tablet / horizontal mobile (width ≤ 900px) */
+@media only screen and (max-width: 900px) {
+  /* Move padding from wrapper to game area for better fit */
+  .game-wrapper {
+    padding: 0;
+  }
+  .game-area {
+    padding: 1rem;
+  }
+
+  /* Reduce card size */
+  .player-cards .card {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  /* Player and computer labels */
+  .player-title,
+  .computer-title {
+    font-size: 0.7rem;
+  }
+
+  /* Compact instruction text */
+  .instruction-box {
+    font-size: 0.8rem;
+    padding: 0.2rem 0rem;
+  }
+
+  /* Sidebar layout adjustments */
+  .sidebar {
+    padding: 0.8rem 0.5rem;
+    border-radius: 0;
+    justify-content: space-around;
+  }
+
+  /* Reduce all sidebar text sizes */
+  .sidebar,
+  .sidebar h3,
+  .sidebar p,
+  .sidebar button,
+  .sidebar li {
+    font-size: 0.8rem;
+  }
+
+  /* Sidebar section titles */
+  .sidebar h3 {
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+  }
+
+  /* Buttons inside sidebar */
+  .sidebar .mode-btn,
+  .sidebar .btn {
+    font-size: 0.8rem;
+  }
+
+  /* Scoreboard text */
+  .sidebar .result {
+    font-size: 0.75rem;
+  }
+
+  /* Rules list styling */
+  .sidebar ul {
+    padding-left: 1rem;
+  }
+  .sidebar ul li {
+    font-size: 0.75rem;
+  }
+
+  /* Rules popup title */
+  .rules-popup h3 {
+    font-size: 0.9rem;
+  }
+
+  /* Rules popup list items */
+  .rules-popup ul li {
+    font-size: 0.8rem;
+  }
+}
+
+/* Medium mobile devices (width ≤ 800px) */
+@media only screen and (max-width: 800px) {
+  /* Game area takes more space */
+  .game-area {
+    flex: 4;
+  }
+
+  /* Slightly smaller cards */
+  .player-cards .card {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  /* Instruction box text size */
+  .instruction-box {
+    font-size: 0.8rem;
+  }
+
+  /* Sidebar takes less space */
+  .sidebar {
+    flex: 2;
+  }
+}
+
+/* Small mobile devices (width ≤ 700px) */
+@media only screen and (max-width: 700px) {
+  /* Smaller cards */
+  .player-cards .card {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  /* Keep instruction text readable but compact */
+  .instruction-box {
+    font-size: 0.8rem;
+  }
+}
+
+/* Very small mobile devices (width ≤ 600px) */
+@media only screen and (max-width: 600px) {
+  /* Reduce padding on sidebar buttons */
+  .sidebar .mode-btn,
+  .sidebar .btn {
+    padding: 0.5rem 0.8rem;
+  }
+}
