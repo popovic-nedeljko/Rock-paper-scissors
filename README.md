@@ -28,9 +28,11 @@ Alternatively, run any local HTTP server and open the served URL in your browser
 The game should open in your browser and be ready to play.
 
 🎮 Game rules
+
 Rock beats Scissors
 
 Scissors beat Paper
 
 Paper beats Rock
+
 
