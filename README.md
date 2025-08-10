@@ -1,4 +1,6 @@
 Rock, Paper, Scissors
+
+
 A simple browser game Rock, Paper, Scissors built with HTML, CSS and JavaScript.
 The player picks a move, and the computer either:
 
@@ -31,3 +33,4 @@ Rock beats Scissors
 Scissors beat Paper
 
 Paper beats Rock
+
